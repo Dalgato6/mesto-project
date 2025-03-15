@@ -6,14 +6,18 @@ const placesItem = cardTemplate.querySelector('.places__item');
 const cardImg = cardTemplate.querySelector('.card__image');
 const cardButtonDel = cardTemplate.querySelector('.card__delete-button');
 const cardtitle = cardTemplate.querySelector('.card__title');
-const cardButtonLike = cardTemplate.querySelector('.card__like-button');
-const btnProfOpen = document.querySelector('.profile__edit-button');
-const profilePopup = document.querySelector('.popup_type_edit');
 const cardPopup = document.querySelector('.popup_type_new-card');
 const imagePopup = document.querySelector('.popup_type_image');
+const profilePopup = document.querySelector('.popup_type_edit');
+
+const cardButtonLike = cardTemplate.querySelector('.card__like-button');
+const btnProfOpen = document.querySelector('.profile__edit-button');
+const btnProfClose = profilePopup.querySelector('.popup__close')
 const btnCardNew = document.querySelector('.profile__add-button');
+const btnCardNewClose = cardPopup.querySelector('.popup__close');
 // @todo: Функция создания карточки
 btnCardNew.addEventListener("click", () => openModal(cardPopup));
+btnCardNewClose.addEventListener("click", () => closeModal(cardPopup));
 // @todo: Функция удаления карточки
 
 // @todo: Вывести карточки на страницу
@@ -36,20 +40,24 @@ function createCard(name, link){
     title.textContent = name;
     placesList.append(item);
 
-img.addEventListener("click", () => {
-    imgSelect(popupImg, link, name)
-    popupCaption.textContent = name;
-    openModal(imagePopup);
+    img.addEventListener("click", () => {
+        imgSelect(popupImg, link, name)
+        popupCaption.textContent = name;
+        openModal(imagePopup);
     });
 }
 
+const btnImgClose = imagePopup.querySelector('.popup__close');
+btnImgClose.addEventListener("click", () => closeModal(imagePopup));
+
 function openModal(popup) {      
     popup.classList.add('popup_is-opened');
-    console.log("click")
 }
 
 function closeModal(popup){
-    popup.classList.remove(".popup_is-opened");
+    popup.classList.remove("popup_is-opened");
+    console.log('click')
 }
 
 btnProfOpen.addEventListener("click", () => openModal(profilePopup));
+btnProfClose.addEventListener('click', () => closeModal(profilePopup));
