@@ -9,7 +9,10 @@ const cardtitle = cardTemplate.querySelector('.card__title');
 const cardPopup = document.querySelector('.popup_type_new-card');
 const imagePopup = document.querySelector('.popup_type_image');
 const profilePopup = document.querySelector('.popup_type_edit');
-
+const nameProfile = document.querySelector('.profile__title');
+const descriptionProfile = document.querySelector('.profile__description');
+const nameProfilePopup = profilePopup.querySelector('.popup__input_type_name');
+const descriptionProfilePopup = profilePopup.querySelector('.popup__input_type_description');
 const cardButtonLike = cardTemplate.querySelector('.card__like-button');
 const btnProfOpen = document.querySelector('.profile__edit-button');
 const btnProfClose = profilePopup.querySelector('.popup__close')
@@ -58,6 +61,9 @@ function closeModal(popup){
     popup.classList.remove("popup_is-opened");
     console.log('click')
 }
+
+nameProfilePopup.value = nameProfile.textContent;
+descriptionProfilePopup.value = descriptionProfile.textContent;
 
 btnProfOpen.addEventListener("click", () => openModal(profilePopup));
 btnProfClose.addEventListener('click', () => closeModal(profilePopup));
