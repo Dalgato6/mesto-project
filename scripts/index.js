@@ -78,11 +78,11 @@ function createCard(name, link, userCard){
 
 function openModal(popup) {      
     popup.classList.add('popup_is-opened');
+    
 }
 
 function closeModal(popup){
     popup.classList.remove("popup_is-opened");
-    console.log('click')
 }
 
 nameProfilePopup.value = nameProfile.textContent;
@@ -139,3 +139,12 @@ function handleCardFormSubmit(evt) {
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 cardFormElement.addEventListener('submit', handleCardFormSubmit);
+
+function PoputAnimation(){
+    console.log('ready');
+    profilePopup.classList.add('popup_is-animated');
+    imagePopup.classList.add('popup_is-animated');
+    cardPopup.classList.add('popup_is-animated');
+}
+
+document.addEventListener('DOMContentLoaded', PoputAnimation);
