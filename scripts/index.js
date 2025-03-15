@@ -61,8 +61,11 @@ function createCard(name, link, userCard){
         evt.currentTarget.classList.toggle("card__like-button_is-active");
     });
 
-    //const btnCardDel = cardTemplate.querySelector('.card__delete-button');
-    //btnCardDel.addEventListener('click');
+    const btnCardDel = item.querySelector('.card__delete-button');
+    btnCardDel.addEventListener('click', () => {
+        const card = btnCardDel.closest('.card');
+        card.remove();
+    });
 
     if (userCard) {
         placesList.prepend(item);
