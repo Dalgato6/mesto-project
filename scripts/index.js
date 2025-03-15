@@ -9,8 +9,8 @@ const cardtitle = cardTemplate.querySelector('.card__title');
 const cardPopup = document.querySelector('.popup_type_new-card');
 const imagePopup = document.querySelector('.popup_type_image');
 const profilePopup = document.querySelector('.popup_type_edit');
-const nameProfile = document.querySelector('.profile__title');
-const descriptionProfile = document.querySelector('.profile__description');
+let nameProfile = document.querySelector('.profile__title');
+let descriptionProfile = document.querySelector('.profile__description');
 const nameProfilePopup = profilePopup.querySelector('.popup__input_type_name');
 const descriptionProfilePopup = profilePopup.querySelector('.popup__input_type_description');
 const cardButtonLike = cardTemplate.querySelector('.card__like-button');
@@ -67,3 +67,32 @@ descriptionProfilePopup.value = descriptionProfile.textContent;
 
 btnProfOpen.addEventListener("click", () => openModal(profilePopup));
 btnProfClose.addEventListener('click', () => closeModal(profilePopup));
+
+// Находим форму в DOM
+const profileFormElement = profilePopup.querySelector('.popup__form');// Воспользуйтесь методом querySelector()
+// Находим поля формы в DOM
+const nameInput = profileFormElement.querySelector('.popup__input_type_name');// Воспользуйтесь инструментом .querySelector()
+const jobInput = profileFormElement.querySelector('.popup__input_type_description');// Воспользуйтесь инструментом .querySelector()
+
+// Обработчик «отправки» формы, хотя пока
+// она никуда отправляться не будет
+function handleProfileFormSubmit(evt) {
+    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
+                                                // Так мы можем определить свою логику отправки.
+                                                // О том, как это делать, расскажем позже.
+
+    // Получите значение полей jobInput и nameInput из свойства value
+    const nameInputValue = nameInput.value;
+    const jobInputValue = jobInput.value;
+    // Выберите элементы, куда должны быть вставлены значения полей
+
+    // Вставьте новые значения с помощью textContent
+    nameProfile.textContent = nameInputValue;
+    descriptionProfile.textContent = jobInputValue;
+
+    closeModal(profilePopup);
+}
+
+// Прикрепляем обработчик к форме:
+// он будет следить за событием “submit” - «отправка»
+profileFormElement.addEventListener('submit', handleProfileFormSubmit);
