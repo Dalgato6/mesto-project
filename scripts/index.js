@@ -16,11 +16,11 @@ let descriptionProfile = document.querySelector('.profile__description');
 const nameProfilePopup = profilePopup.querySelector('.popup__input_type_name');
 const descriptionProfilePopup = profilePopup.querySelector('.popup__input_type_description');
 
-
+//кнопка открытия и закрытия ред профиля
 const btnProfOpen = document.querySelector('.profile__edit-button');
 const btnProfClose = profilePopup.querySelector('.popup__close')
+//кнопка открытия и закрытия создание нов карточки
 const btnCardNew = document.querySelector('.profile__add-button');
-
 const btnCardNewClose = cardPopup.querySelector('.popup__close');
 // @todo: Функция создания карточки
 btnCardNew.addEventListener("click", () => openModal(cardPopup));
@@ -32,6 +32,7 @@ initialCards.forEach(function (el){
     createCard(el.name, el.link, false)
         
 });
+//фунеция задает атриибуты; src и alt
 function imgSelect(img, link, name){
     img.setAttribute("src", link);
     img.setAttribute("alt", `Фото ${name}`);
@@ -52,15 +53,15 @@ function createCard(name, link, userCard){
         openModal(imagePopup);
 
     });
-
+    //закрытие image_popup
     const btnImgClose = imagePopup.querySelector('.popup__close');
     btnImgClose.addEventListener("click", () => closeModal(imagePopup));
-
+    //лайк карточки
     const btnCardLike = item.querySelector('.card__like-button');
     btnCardLike.addEventListener("click", (evt) =>{
         evt.currentTarget.classList.toggle("card__like-button_is-active");
     });
-
+    //удаление карточки
     const btnCardDel = item.querySelector('.card__delete-button');
     btnCardDel.addEventListener('click', () => {
         const card = btnCardDel.closest('.card');
@@ -75,12 +76,12 @@ function createCard(name, link, userCard){
     
 }
 
-
+//открытие popup
 function openModal(popup) {      
     popup.classList.add('popup_is-opened');
     
 }
-
+//закрытие popup
 function closeModal(popup){
     popup.classList.remove("popup_is-opened");
 }
@@ -139,12 +140,11 @@ function handleCardFormSubmit(evt) {
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 cardFormElement.addEventListener('submit', handleCardFormSubmit);
-
+//добавление анимации popup
 function PoputAnimation(){
-    console.log('ready');
     profilePopup.classList.add('popup_is-animated');
     imagePopup.classList.add('popup_is-animated');
     cardPopup.classList.add('popup_is-animated');
 }
-
+//ивент при первой загруке страницы
 document.addEventListener('DOMContentLoaded', PoputAnimation);
