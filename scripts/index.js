@@ -148,7 +148,31 @@ function PoputAnimation(){
 }
 
 //валидация форм
+const formElement = document.forms.edit_profile;
+const formInput = formElement.querySelector('.popup__input_type_name');
 
+const fromError = formElement.querySelector(`.${formInput.id}-error`)
 
+const showInputError = (element) => {
+    element.classList.add('popup__input_type_error');
+
+    fromError.classList.add('popup__input-error_active')
+};
+
+const hideInputError = (element) => {
+    element.classList.remove('popup__input_type_error');
+
+    fromError.classList.remove('popup__input-error_active');
+  };
+
+const isValid = () => {
+    if(!formInput.validity.valid) {
+        showInputError(formInput);
+    } else {
+        hideInputError(formInput);
+    }
+};
+
+formInput.addEventListener('input', isValid); 
 //ивент при первой загруке страницы
 document.addEventListener('DOMContentLoaded', PoputAnimation);
