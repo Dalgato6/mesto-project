@@ -146,5 +146,9 @@ function PoputAnimation(){
     imagePopup.classList.add('popup_is-animated');
     cardPopup.classList.add('popup_is-animated');
 }
+
+//валидация форм
+
+
 //ивент при первой загруке страницы
 document.addEventListener('DOMContentLoaded', PoputAnimation);
