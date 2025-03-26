@@ -76,13 +76,6 @@ function createCard(name, link, userCard){
     
 }
 
-//закртые по нажатиб overlay
-const closeByOverlay = (evt, popup) => {
-    if (evt.currentTarget === evt.target) {
-        closeModal(popup);
-    }
-};
-
 //открытие popup
 function openModal(popup) {      
     popup.classList.add('popup_is-opened');
@@ -227,9 +220,28 @@ const toggleButtonState = (inputList, buttonElement) =>{
     }
 };
 
+//закртые по нажатию overlay
+const closeByOverlay = (evt, popup) => {
+    if (evt.currentTarget === evt.target) {
+        closeModal(popup);
+    }
+};
+
 profilePopup.addEventListener('click', (evt) => closeByOverlay(evt, profilePopup));
 cardPopup.addEventListener('click', (evt) => closeByOverlay(evt, cardPopup));
 imagePopup.addEventListener('click', (evt) => closeByOverlay(evt, imagePopup));
+
+//Закрытие попапов нажатием Esc
+function closeEsc(evt) {
+    if (evt.key === "Escape") {
+        const openedPopup = document.querySelector('.popup_is-opened');   
+        closeModal(openedPopup);
+    }
+};
+//слушатель на нажатие кнопок 
+document.addEventListener('keydown', function(evt) {
+    closeEsc(evt);
+})
 
 //ивент при первой загруке страницы
 document.addEventListener('DOMContentLoaded', PoputAnimation);
