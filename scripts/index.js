@@ -76,6 +76,13 @@ function createCard(name, link, userCard){
     
 }
 
+//закртые по нажатиб overlay
+const closeByOverlay = (evt, popup) => {
+    if (evt.currentTarget === evt.target) {
+        closeModal(popup);
+    }
+};
+
 //открытие popup
 function openModal(popup) {      
     popup.classList.add('popup_is-opened');
@@ -91,6 +98,7 @@ descriptionProfilePopup.value = descriptionProfile.textContent;
 
 btnProfOpen.addEventListener("click", () => openModal(profilePopup));
 btnProfClose.addEventListener('click', () => closeModal(profilePopup));
+
 
 // Находим форму в DOM
 const profileFormElement = profilePopup.querySelector('.popup__form');// Воспользуйтесь методом querySelector()
@@ -218,5 +226,10 @@ const toggleButtonState = (inputList, buttonElement) =>{
         buttonElement.removeAttribute('disabled');
     }
 };
+
+profilePopup.addEventListener('click', (evt) => closeByOverlay(evt, profilePopup));
+cardPopup.addEventListener('click', (evt) => closeByOverlay(evt, cardPopup));
+imagePopup.addEventListener('click', (evt) => closeByOverlay(evt, imagePopup));
+
 //ивент при первой загруке страницы
 document.addEventListener('DOMContentLoaded', PoputAnimation);
